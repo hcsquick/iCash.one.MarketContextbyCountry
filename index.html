@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -62,6 +62,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,san
 <div id="panel"></div>
 
 <script>
+const FLAGS = {
+  GH: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ec-1f1ed.svg',
+  KE: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1f0-1f1ea.svg',
+  IN: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ee-1f1f3.svg',
+  CN: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1e8-1f1f3.svg',
+  TW: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1f9-1f1fc.svg',
+  CI: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1e8-1f1ee.svg',
+  SG: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1f8-1f1ec.svg',
+};
 const MARKETS = [
   {
     code:'GH', flag:'gh', name:'Ghana', currency:'GHS', region:'West Africa',
@@ -161,7 +170,7 @@ const tabsEl = document.getElementById('tabs');
 MARKETS.forEach((m, i) => {
   const t = document.createElement('div');
   t.className = 'tab' + (i === 0 ? ' active' : '');
-  t.innerHTML = `<img class="flag" src="https://flagcdn.com/w40/${m.flag}.png" alt="${m.name}">${m.name}`;
+  t.innerHTML = `<img class="flag" src="${FLAGS[m.code]}" alt="${m.name}">${m.name}`;
   t.onclick = () => show(i);
   tabsEl.appendChild(t);
 });
@@ -187,7 +196,7 @@ function show(idx) {
     <div class="panel">
       <div class="mp-header">
         <div class="mp-title">
-          <img class="mp-flag" src="https://flagcdn.com/w80/${m.flag}.png" alt="${m.name}">
+          <img class="mp-flag" src="${FLAGS[m.code]}" alt="${m.name}">
           ${m.name}
           <span style="font-size:13px;color:#5E6C84;font-weight:400">· ${m.region} · ${m.currency}</span>
         </div>
