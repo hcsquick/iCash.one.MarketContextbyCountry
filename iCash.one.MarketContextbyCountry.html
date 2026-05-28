@@ -1,0 +1,220 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>iCash.one — Market Context</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;color:#172B4D;background:#F4F5F7;padding:20px}
+
+/* ── TABS ── */
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0}
+.tab{padding:8px 14px;border-radius:5px 5px 0 0;border:1px solid #DFE1E6;border-bottom:none;background:#F4F5F7;font-size:13px;font-weight:500;cursor:pointer;color:#344563;transition:background .12s;position:relative;bottom:-1px;display:flex;align-items:center;gap:6px}
+.tab:hover{background:#e8ecf0}
+.tab.active{background:white;color:#0052CC;font-weight:700;border-color:#DFE1E6;border-bottom-color:white}
+.tab .flag{font-size:16px;line-height:1}
+
+/* ── PANEL ── */
+.panel{background:white;border:1px solid #DFE1E6;border-radius:0 5px 5px 5px;padding:24px 26px;animation:fadeIn .18s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Panel header ── */
+.mp-header{margin-bottom:16px}
+.mp-title{font-size:19px;font-weight:700;color:#172B4D;display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.mp-flag{font-size:24px;line-height:1}
+.mp-subtitle{font-size:12px;color:#5E6C84;margin-bottom:10px}
+.mp-chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:11px;font-weight:600;padding:3px 9px;border-radius:3px}
+.c-green{background:#E3FCEF;color:#006644}
+.c-blue{background:#DEEBFF;color:#0052CC}
+.c-yellow{background:#FFFAE6;color:#974F0C}
+
+/* ── Two column body ── */
+.mp-body{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:16px}
+@media(max-width:600px){.mp-body{grid-template-columns:1fr}}
+
+.col-title{font-size:11px;font-weight:700;color:#5E6C84;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+
+/* ── Methods ── */
+.method{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid #F4F5F7}
+.method:last-child{border-bottom:none}
+.method-icon{width:30px;height:30px;border-radius:7px;background:#F4F5F7;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.method-info{flex:1}
+.method-name{font-size:13px;font-weight:600;color:#172B4D}
+.method-code{font-size:11px;color:#5E6C84}
+.method-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;white-space:nowrap}
+
+/* ── Gap box ── */
+.gap-box{background:#F4F5F7;border-radius:5px;padding:13px 15px;font-size:13px;color:#344563;line-height:1.6;margin-bottom:10px}
+
+/* ── Stake box — light version ── */
+.stake-box{background:#F0F4FF;border:1px solid #C5D5F5;border-left:3px solid #0052CC;border-radius:5px;padding:13px 15px;font-size:13px;color:#172B4D;line-height:1.6}
+.stake-box .stake-label{font-size:11px;font-weight:700;color:#0052CC;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:5px;margin-bottom:6px}
+
+/* ── Context paragraph ── */
+.context-text{font-size:13.5px;color:#344563;line-height:1.65;padding-bottom:14px;border-bottom:1px solid #F0F0F0;margin-bottom:2px}
+</style>
+</head>
+<body>
+
+<div class="tabs" id="tabs"></div>
+<div id="panel"></div>
+
+<script>
+const MARKETS = [
+  {
+    code:'GH', flag:'🇬🇭', name:'Ghana', currency:'GHS', region:'West Africa',
+    headline:"One of Africa's fastest-growing mobile money markets",
+    context:"Over 40 million registered mobile money accounts. Mobile penetration exceeds 100%. The majority of activity is domestic — P2P transfers, bill payments, and local purchases. Very limited international card penetration.",
+    methods:[
+      {icon:'📱', name:'MTN Mobile Money (MoMo)', code:'*170#', share:'Largest', cls:'c-green'},
+      {icon:'📞', name:'Telecel Cash (ex-Vodafone)', code:'*110#', share:'Active', cls:'c-blue'},
+      {icon:'📡', name:'AirtelTigo Money', code:'*110#', share:'Active', cls:'c-blue'},
+    ],
+    gap:"Local MoMo covers domestic payments well but is not accepted on Stake.com or other global iGaming platforms. iCash.one bridges this — players fund a voucher via MoMo at a local reseller and deposit on Stake.com instantly.",
+    stake:"Ghanaian players can pay directly via MTN MoMo in the gateway (Path A), or purchase a voucher via MoMo at a local reseller and enter the code (Path B).",
+    chips:[['No bank account needed','c-green'],['MoMo-friendly resellers','c-blue'],['Multi-currency','c-blue']],
+  },
+  {
+    code:'KE', flag:'🇰🇪', name:'Kenya', currency:'KES', region:'East Africa',
+    headline:"Birthplace of mobile money — M-Pesa dominates",
+    context:"M-Pesa (Safaricom), launched in 2007, is one of the most mature mobile payment systems in the world and processes the vast majority of Kenyan financial transactions. Banking penetration has grown to ~79% but international card access remains limited for most players.",
+    methods:[
+      {icon:'💚', name:'M-Pesa (Safaricom)', code:'*334#', share:'Dominant', cls:'c-green'},
+      {icon:'📱', name:'Airtel Money', code:'*334#', share:'Active', cls:'c-blue'},
+      {icon:'📡', name:'T-Kash (Telkom)', code:'*T-KASH#', share:'Niche', cls:'c-yellow'},
+    ],
+    gap:"M-Pesa dominates locally but has no direct acceptance on Stake.com. iCash.one is the bridge — players use M-Pesa directly in the gateway (Path A) or purchase a voucher from a reseller that accepts M-Pesa (Path B).",
+    stake:"Kenya is the market where Path A (direct M-Pesa in the gateway) works best. Players enter their Safaricom number, approve the STK push, and their Stake.com wallet is credited instantly.",
+    chips:[['M-Pesa direct (Path A)','c-green'],['M-Pesa resellers (Path B)','c-blue'],['Largest iGaming market','c-green']],
+  },
+  {
+    code:'IN', flag:'🇮🇳', name:'India', currency:'INR', region:'South Asia',
+    headline:"World's largest real-time payment market — UPI",
+    context:"UPI processed over 21 billion transactions in Dec 2025. PhonePe, Google Pay, and Paytm account for ~68% of all online payments with 500M+ users. However, most international iGaming platforms do not accept UPI directly due to cross-border restrictions.",
+    methods:[
+      {icon:'📲', name:'UPI (PhonePe, GPay, Paytm)', code:'App-based', share:'Dominant — 68%', cls:'c-green'},
+      {icon:'💳', name:'RuPay Cards', code:'Card', share:'Growing', cls:'c-blue'},
+      {icon:'🏦', name:'Net Banking / IMPS', code:'Bank portal', share:'Common', cls:'c-blue'},
+    ],
+    gap:"UPI cannot be used directly on Stake.com. iCash.one solves this — Indian players fund a voucher via UPI at a local reseller, then deposit on Stake.com using the voucher code.",
+    stake:"Indian players primarily use Path B — purchase a voucher via UPI (PhonePe / Google Pay) at a verified reseller, then enter the code at the Stake.com cashier.",
+    chips:[['UPI-funded vouchers','c-green'],['500M+ UPI users','c-green'],['Cross-border bridge','c-blue']],
+  },
+  {
+    code:'CN', flag:'🇨🇳', name:'China', currency:'CNY', region:'East Asia',
+    headline:"Most cashless economy — cross-border restrictions apply",
+    context:"Alipay and WeChat Pay account for ~89% of e-commerce transactions. China's payment ecosystem is among the world's most advanced. However, cross-border restrictions mean many international platforms — including most iGaming sites — are not directly accessible via local wallets.",
+    methods:[
+      {icon:'💙', name:'Alipay', code:'App-based', share:'~55% share', cls:'c-green'},
+      {icon:'💚', name:'WeChat Pay', code:'In-app', share:'~34% share', cls:'c-blue'},
+      {icon:'💳', name:'UnionPay', code:'Card', share:'Bank-issued', cls:'c-blue'},
+    ],
+    gap:"Alipay and WeChat Pay cannot be used directly on Stake.com due to cross-border restrictions. iCash.one provides access to global iGaming platforms via vouchers funded through local wallets at verified resellers.",
+    stake:"Chinese players use Path B — purchase a voucher via Alipay or WeChat Pay at a reseller, enter the code at the Stake.com cashier. This bypasses cross-border payment restrictions entirely.",
+    chips:[['Cross-border access','c-green'],['Alipay/WeChat resellers','c-blue'],['Multi-currency','c-blue']],
+  },
+  {
+    code:'TW', flag:'🇹🇼', name:'Taiwan', currency:'TWD', region:'East Asia',
+    headline:"Mature market with strong gaming and privacy culture",
+    context:"Taiwan has a well-developed digital payments ecosystem: LINE Pay leads e-wallets, credit cards are widely used, and convenience store payment codes (7-Eleven ibon, FamilyMart FamiPort) are very common for online purchases. Taiwan also has a highly engaged gaming community.",
+    methods:[
+      {icon:'💚', name:'LINE Pay / LINE Money', code:'App-based', share:'Leading wallet', cls:'c-green'},
+      {icon:'📱', name:'JKoPay', code:'App-based', share:'Growing', cls:'c-blue'},
+      {icon:'🏪', name:'CVS codes (ibon / FamiPort)', code:'In-store', share:'Common for online', cls:'c-blue'},
+    ],
+    gap:"Taiwanese players are active on international gaming platforms. iCash.one is attractive as a privacy-first, card-free payment method — particularly for gamers who prefer not to expose their credit card details on iGaming platforms.",
+    stake:"Taiwanese players primarily use Path B — purchase a voucher via LINE Pay or a CVS payment code, then enter it at the Stake.com cashier. Privacy and no card exposure are the key selling points.",
+    chips:[['Privacy-first','c-green'],['Gaming community','c-green'],['LINE Pay resellers','c-blue']],
+  },
+  {
+    code:'CI', flag:'🇨🇮', name:'Ivory Coast', currency:'XOF', region:'West Africa',
+    headline:"One of West Africa's largest mobile money markets",
+    context:"MTN and Orange dominate with large subscriber bases. Wave has disrupted the market with a lower-fee app-first model and is growing rapidly. Mobile money is the primary financial tool for most of the population. Traditional banking penetration remains limited.",
+    methods:[
+      {icon:'📱', name:'MTN Mobile Money', code:'*133#', share:'Major', cls:'c-green'},
+      {icon:'🟠', name:'Orange Money', code:'*144#', share:'Major', cls:'c-blue'},
+      {icon:'🌊', name:'Wave', code:'App-based', share:'Rapidly growing', cls:'c-blue'},
+    ],
+    gap:"Like Ghana, local mobile money covers domestic use cases but is not accepted on Stake.com. iCash.one bridges this — Ivorian players can fund via Orange Money or MTN MoMo and deposit on Stake.com.",
+    stake:"Ivorian players use Path A (direct mobile money in the gateway) or Path B (voucher purchased via Orange Money / MTN MoMo at a reseller). Dynamic very similar to Ghana.",
+    chips:[['Orange Money & MTN','c-green'],['Wave-friendly resellers','c-blue'],['Mobile-money bridge','c-blue']],
+  },
+  {
+    code:'SG', flag:'🇸🇬', name:'Singapore', currency:'SGD', region:'SE Asia',
+    headline:"Advanced market — privacy and platform access drive adoption",
+    context:"Near-universal banking and card penetration. PayNow (instant bank transfer), GrabPay, DBS PayLah!, and Visa/Mastercard are all widely used. Singapore is one of Asia's most sophisticated financial markets.",
+    methods:[
+      {icon:'🏦', name:'PayNow (bank transfer)', code:'Banking app', share:'Widely used', cls:'c-green'},
+      {icon:'🟢', name:'GrabPay / DBS PayLah!', code:'App-based', share:'Popular wallets', cls:'c-blue'},
+      {icon:'💳', name:'Visa / Mastercard', code:'Card', share:'High penetration', cls:'c-blue'},
+    ],
+    gap:"In Singapore, iCash.one's value is privacy and access — players who prefer not to link their bank card to an iGaming platform, or who use a platform that specifically accepts iCash.one/AstroPay. Chargebacks are also eliminated.",
+    stake:"Singaporean players typically use Path B — purchase a voucher via PayNow or card at a verified reseller, then deposit on Stake.com. No card details are ever shared with the platform.",
+    chips:[['Privacy-first','c-green'],['Zero chargebacks','c-green'],['PayNow resellers','c-blue']],
+  },
+];
+
+// Build tabs
+const tabsEl = document.getElementById('tabs');
+MARKETS.forEach((m, i) => {
+  const t = document.createElement('div');
+  t.className = 'tab' + (i === 0 ? ' active' : '');
+  t.innerHTML = `<span class="flag">${m.flag}</span>${m.name}`;
+  t.onclick = () => show(i);
+  tabsEl.appendChild(t);
+});
+
+function show(idx) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  const m = MARKETS[idx];
+
+  const methodsHtml = m.methods.map(mt => `
+    <div class="method">
+      <div class="method-icon">${mt.icon}</div>
+      <div class="method-info">
+        <div class="method-name">${mt.name}</div>
+        <div class="method-code">${mt.code}</div>
+      </div>
+      <span class="method-tag ${mt.cls}">${mt.share}</span>
+    </div>`).join('');
+
+  const chipsHtml = m.chips.map(([label, cls]) =>
+    `<span class="chip ${cls}">${label}</span>`).join('');
+
+  document.getElementById('panel').innerHTML = `
+    <div class="panel">
+      <div class="mp-header">
+        <div class="mp-title">
+          <span class="mp-flag">${m.flag}</span>
+          ${m.name}
+          <span style="font-size:13px;color:#5E6C84;font-weight:400">· ${m.region} · ${m.currency}</span>
+        </div>
+        <div class="mp-subtitle">${m.headline}</div>
+        <div class="mp-chips">${chipsHtml}</div>
+      </div>
+
+      <p class="context-text">${m.context}</p>
+
+      <div class="mp-body">
+        <div>
+          <div class="col-title">Local payment methods</div>
+          ${methodsHtml}
+        </div>
+        <div>
+          <div class="col-title">Where iCash.one fits in</div>
+          <div class="gap-box">${m.gap}</div>
+          <div class="stake-box">
+            <div class="stake-label">🎰 Stake.com deposit path</div>
+            ${m.stake}
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+show(0);
+</script>
+</body>
+</html>
